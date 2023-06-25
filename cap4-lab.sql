@@ -40,3 +40,6 @@ create table musica (
     nome_musica         varchar(60) null,
     duracao             decima(6,2) null
 );
+
+alter table musica (add primary key (codigo_musica));
+
