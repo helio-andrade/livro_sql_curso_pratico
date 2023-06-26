@@ -38,8 +38,32 @@ alter table item_album (add primary key (codigo_album, codigo_musica));
 create table musica (
     codigo_musica       integer not null,
     nome_musica         varchar(60) null,
-    duracao             decima(6,2) null
+    duracao             decimal(6,2) null
 );
 
 alter table musica (add primary key (codigo_musica));
 
+create table musica_autor (
+    codigo_musica       integer not null, 
+    codigo_autor        integer not null
+);
+
+alter table musica_autor add primary key (codigo_musica, codigo_autor);
+
+create table album_categoria (
+    codigo_categoria integer not null,
+    menor_preco decimal(14,2) not null,
+    maior_preco decimal(14,2) not null
+);
+
+alter table album foreign key (codigo_gravadora) references gravadora;
+
+alter table album add (constraint album_album foreign key (album_indicado) references album);
+
+alter table item_album add foreign key (codigo_musica) references musica;
+
+alter table item_album add foreign key (codigo_album) references album;
+
+alter table musica_autor add foreign key (codigo_autor) references autor;
+
+alter table musica add foreign key (codigo_musica) references musica;
