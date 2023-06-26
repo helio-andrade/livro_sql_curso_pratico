@@ -14,7 +14,7 @@ create table album(
     album_indicado      integer null
 );
 
-alter table album (add primary key (codigo_album));
+alter table album add primary key (codigo_album);
 
 create table gravadora (
     codigo_gravadora    integer not null,
@@ -33,7 +33,7 @@ create table item_album (
     numero_faixa        integer not null
 );
 
-alter table item_album (add primary key (codigo_album, codigo_musica));
+alter table item_album add primary key (codigo_album, codigo_musica);
 
 create table musica (
     codigo_musica       integer not null,
@@ -41,7 +41,7 @@ create table musica (
     duracao             decimal(6,2) null
 );
 
-alter table musica (add primary key (codigo_musica));
+alter table musica add primary key (codigo_musica);
 
 create table musica_autor (
     codigo_musica       integer not null, 
@@ -56,14 +56,27 @@ create table album_categoria (
     maior_preco decimal(14,2) not null
 );
 
-alter table album foreign key (codigo_gravadora) references gravadora;
+alter table album
+    add foreign key (codigo_categoria)
+    references gravadora;
 
-alter table album add (constraint album_album foreign key (album_indicado) references album);
+alter table album 
+    add (constraint album_album 
+    foreign key (album_indicado) 
+    references album);
 
-alter table item_album add foreign key (codigo_musica) references musica;
+alter table item_album 
+    add foreign key (codigo_musica) 
+    references musica;
 
-alter table item_album add foreign key (codigo_album) references album;
+alter table item_album 
+    add foreign key (codigo_album) 
+    references album;
 
-alter table musica_autor add foreign key (codigo_autor) references autor;
+alter table musica_autor 
+    add foreign key (codigo_autor) 
+    references autor;
 
-alter table musica add foreign key (codigo_musica) references musica;
+alter table musica 
+    add foreign key (codigo_musica) 
+    references musica;
