@@ -25,7 +25,7 @@ create table gravadora (
     url_site            varchar(80) null
 );
 
-alter table gravadora (add primary key (codigo_gravadora));
+alter table gravadora add primary key (codigo_gravadora);
 
 create table item_album (
     codigo_musica       integer not null,
@@ -57,13 +57,13 @@ create table album_categoria (
 );
 
 alter table album
-    add foreign key (codigo_categoria)
+    add foreign key (codigo_gravadora)
     references gravadora;
 
 alter table album 
-    add (constraint album_album 
+    add constraint album_album 
     foreign key (album_indicado) 
-    references album);
+    references album;
 
 alter table item_album 
     add foreign key (codigo_musica) 
